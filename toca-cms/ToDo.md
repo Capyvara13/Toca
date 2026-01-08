@@ -1,8 +1,9 @@
 # Things To Do
 
-- Service
-- Persistence
-- Controller
+- JpaRepository -> Query
+- PersistenceRepository -> Impl
+- ApplicationService -> Service
+- Controller -> Controller
 
 ## Perguntar ao Bidu
 

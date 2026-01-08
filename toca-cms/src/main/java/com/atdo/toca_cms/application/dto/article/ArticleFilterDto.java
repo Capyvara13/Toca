@@ -41,6 +41,11 @@ public class ArticleFilterDto {
      */
     private long maxViewCount;
 
+    /**
+     * Filters articles that have a content with Artificial Intelligence defined with TRUE or FALSE.
+     */
+    private Boolean hasAI;
+
     // --- Filtering criteria related to publication date ---
     /**
      * Filters **articles** published **on or after** this point in time (Instant).
@@ -58,4 +63,5 @@ public class ArticleFilterDto {
      * The maximum number of items (**articles**) per page (page size). Default: 10.
      */
     private Integer size = 10;
+
 }

@@ -48,7 +48,7 @@ public interface ArticleRepository {
      */
     Optional<Article> findBySlug(String slug);
 
-    /**
+    /**0,
      * Finds all Articles based on the provided filtering criteria.
      * This method consolidates the various filtering needs into a single interface method,
      * leveraging the ArticleFilterDto from the Application layer.
@@ -57,4 +57,6 @@ public interface ArticleRepository {
      * @return A page of Articles matching the filter criteria.
      */
     Page<Article> findAll(ArticleFilterDto filterDto);
+
+
 }

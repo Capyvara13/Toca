@@ -57,4 +57,9 @@ public class ArticleInputDto {
      * Optional field. If null, the entity default (DRAFT) will be used.
      */
     private ContentStatus status;
+
+    /**
+     * If the content has or not Artificial Intelligence help.
+     */
+    private Boolean hasAI;
 }

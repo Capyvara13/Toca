@@ -47,6 +47,9 @@ public class Article {
     @Column(name = "view_count", columnDefinition = "BIGINT DEFAULT 0", nullable = false)
     private long viewCount = 0;
 
+    @Column(name = "has_AI", columnDefinition = "BOOLEAN DEFAULT FALSE", nullable = false)
+    private boolean hasAI = false; // If the content has help by Artificial Intelligence
+
     @Column(name = "status", columnDefinition = "VARCHAR(255) DEFAULT 'DRAFT'", nullable = false)
     @Enumerated(EnumType.STRING)
     private ContentStatus status = ContentStatus.DRAFT;

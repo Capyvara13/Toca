@@ -1,7 +1,7 @@
 package com.atdo.toca_cms.domain.entity.common;
 
 import com.atdo.toca_cms.domain.entity.Media;
-import com.atdo.toca_cms.domain.exceptions.NoMediaException;
+import com.atdo.toca_cms.domain.exceptions.EntityNotFoundException;
 import com.atdo.toca_cms.domain.util.enums.MediaType;
 import com.atdo.toca_cms.domain.util.enums.RoleType;
 import jakarta.persistence.*;
@@ -38,7 +38,7 @@ public class CastAndCrew {
 
     private MediaType getMediaType() {
         if (this.media == null) {
-            throw  new NoMediaException(("No Media found!"));
+            throw  new EntityNotFoundException(("No Media found!"));
         }
         return this.media.getMediaType();
     }

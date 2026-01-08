@@ -60,6 +60,11 @@ public class ArticleResponseDto {
     private ContentStatus status;
 
     /**
+     * If the content has or not Artificial Intelligence help.
+     */
+    private Boolean hasAI;
+
+    /**
      * The instant when the article was created.
      */
     private Instant createdAt;
