@@ -1,8 +1,8 @@
-# 🦊 A Toca de Opiniões (ATdO)
+# 🦊 Toca
 
 > **"Um refúgio para quem vive de livros, gibis e filmes."**
 
-Bem-vindo à **A Toca de Opiniões**, uma plataforma dedicada ao debate e compartilhamento de experiências sobre cultura pop. Este repositório centraliza tanto a interface do usuário (Frontend) quanto o motor que sustenta tudo: o **Toca CMS** (Backend).
+Bem-vindo à **Toca**, uma plataforma dedicada ao debate e compartilhamento de experiências sobre cultura pop. Este repositório centraliza tanto a interface do usuário (Frontend) quanto o motor que sustenta tudo: o **Toca CMS** (Backend).
 
 ---
 
@@ -10,7 +10,7 @@ Bem-vindo à **A Toca de Opiniões**, uma plataforma dedicada ao debate e compar
 
 O projeto é organizado para separar as responsabilidades de interface e de gerenciamento de dados:
 
-### 1. Frontend (`/atdo`)
+### 1. Frontend (`/toca`)
 
 A interface web focada na experiência do usuário, organizada de forma semântica para facilitar a manutenção:
 * **assets/**: 
@@ -49,12 +49,12 @@ A espinha dorsal do sistema, desenvolvida em **Java**, atuando como a API oficia
 
 1.  **Clone o repositório:**
     ```bash
-    git clone https://github.com/Capyvara13/atdo.git
+    git clone https://github.com/Capyvara13/Toca.git
     ```
 2.  **Inicie o Backend (Toca CMS):**
     Navegue até a pasta `toca-cms` e execute o projeto Java através da sua IDE ou via terminal (Maven).
-3.  **Inicie o Frontend (ATdO):**
-    Abra a pasta `atdo` no seu navegador. Certifique-se de que as chamadas de API nos arquivos JavaScript em `src/` ou `assets/js/` estejam apontando para a porta correta do Toca CMS (ex: `http://localhost:8080`).
+3.  **Inicie o Frontend (Toca):**
+    Abra a pasta `toca` no seu navegador. Certifique-se de que as chamadas de API nos arquivos JavaScript em `src/` ou `assets/js/` estejam apontando para a porta correta do Toca CMS (ex: `http://localhost:8080`).
 
 ---
 
