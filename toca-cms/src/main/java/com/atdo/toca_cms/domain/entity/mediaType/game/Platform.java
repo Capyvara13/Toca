@@ -1,47 +1,26 @@
 package com.atdo.toca_cms.domain.entity.mediaType.game;
 
-import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.Builder;
+import lombok.NonNull;
+import lombok.Value;
 
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Data
-@Table(name = "platform")
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Value
+@Builder(toBuilder = true)
 public class Platform {
-    @Id
-    @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_platform")
-    private long idPlatform;
-
-    @Column(name = "name", unique = true, nullable = false)
-    private String name;
-
-    @Column(name = "manufacturer")
-    private String manufacturer;
-
-    @Column(name = "release_date")
-    private LocalDate releaseDate;
-
-    @Column(name = "logo_url")
-    private String logoUrl;
-
-    @Column(name = "created_at", nullable = false)
-    @CreationTimestamp
-    private Instant createdAt;
-
-    @Column(name = "updated_at", nullable = false)
-    @UpdateTimestamp
-    private Instant updatedAt;
-
-    @OneToMany(mappedBy = "platform", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<GamePlatform> gamePlatformEntire = new HashSet<>();
+    long idPlatform;
+    @NonNull
+    String name;
+    String manufacturer;
+    LocalDate releaseDate;
+    String logoUrl;
+    @NonNull
+    Instant createdAt;
+    Instant updatedAt;
+    @Builder.Default
+    Set<GamePlatform> gamePlatformEntire = new HashSet<>();
 }

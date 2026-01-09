@@ -32,5 +32,5 @@ public class GamePlatformResponseDto {
     private Instant addedAt;
 
     // Omitido: As entidades Game e Platform completas (FetchType.LAZY)
-    // Omitido: O objeto GamePlatformId (chave composta)
+    // Omitido: O objeto GamePlatformIdEntity (chave composta)
 }

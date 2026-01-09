@@ -1,50 +1,27 @@
 package com.atdo.toca_cms.domain.entity.mediaType.serie;
 
-import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.Builder;
+import lombok.NonNull;
+import lombok.Value;
 
 import java.time.Instant;
 import java.util.List;
 
-@Entity
-@Data
-@Table(name = "season")
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Value
+@Builder(toBuilder = true)
 public class Season {
-    @Id
-    @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_season")
-    private long idSeason;
-
-    @Column(name = "season_num", nullable = false, columnDefinition = "INT DEFAULT 1")
-    private int seasonNum = 1;
-
-    @Column(name = "title", nullable = false)
-    private String title;
-
-    @Column(name = "synopsis", nullable = false)
-    @Lob
-    private String synopsis;
-
-    @Column(name = "poster_url")
-    private String posterUrl;
-
-    @JoinColumn(name = "fk_serie_season", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Serie serie;
-
-    @Column(name = "created_at", nullable = false)
-    @CreationTimestamp
-    private Instant createdAt;
-
-    @Column(name = "updated_at", nullable = false)
-    @UpdateTimestamp
-    private Instant updatedAt;
-
-    @OneToMany(mappedBy = "season", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Episode> episodes;
+    long idSeason;
+    @Builder.Default
+    int seasonNum = 1;
+    @NonNull
+    String title;
+    @NonNull
+    String synopsis;
+    String posterUrl;
+    @NonNull
+    Serie serie;
+    @NonNull
+    Instant createdAt;
+    Instant updatedAt;
+    List<Episode> episodes;
 }

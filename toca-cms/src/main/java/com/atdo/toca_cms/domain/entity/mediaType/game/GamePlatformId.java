@@ -1,15 +1,17 @@
 package com.atdo.toca_cms.domain.entity.mediaType.game;
 
-import jakarta.persistence.Embeddable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Builder;
+import lombok.NonNull;
+import lombok.Value;
 
 import java.io.Serializable;
 
-@Embeddable
-@Data
-@EqualsAndHashCode
+@Value
+@Builder(toBuilder = true)
 public class GamePlatformId implements Serializable {
-    private Long gameId;
-    private Long platformId;
+    @NonNull
+    Long gameId;
+    @NonNull
+    Long platformId;
 }
+

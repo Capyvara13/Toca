@@ -1,37 +1,25 @@
 package com.atdo.toca_cms.domain.entity.mediaType.serie;
 
-import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Builder;
+import lombok.NonNull;
+import lombok.Value;
 
-@Entity
-@Data
-@Table(name = "episode", uniqueConstraints = {@UniqueConstraint(
-        name = "uc_season_episode",
-        columnNames = {"id_episode", "season_num"}
-)})
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+import java.time.Instant;
+
+@Value
+@Builder(toBuilder = true)
 public class Episode {
-    @Id
-    @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_episode")
-    private long idEpisode;
-
-    @Column(name = "season_num", nullable = false, columnDefinition = "INT DEFAULT 1")
-    private int seasonNum = 1;
-
-    @Column(name = "title", nullable = false)
-    private String title;
-
-    @Column(name = "synopsis", nullable = false)
-    @Lob
-    private String synopsis;
-
-    @Column(name = "poster_url")
-    private String posterUrl;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_season_episode")
-    private Season season;
+    long idEpisode;
+    @Builder.Default
+    int seasonNum = 1;
+    @NonNull
+    String title;
+    @NonNull
+    String synopsis;
+    String posterUrl;
+    @NonNull
+    Instant createdAt;
+    Instant updatedAt;
+    @NonNull
+    Season season;
 }

@@ -1,78 +1,45 @@
 package com.atdo.toca_cms.domain.entity.mediaType.book;
 
 import com.atdo.toca_cms.domain.entity.Media;
-import com.atdo.toca_cms.domain.entity.common.CastAndCrew;
 import com.atdo.toca_cms.domain.util.enums.ContentStatus;
-import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.Builder;
+import lombok.NonNull;
+import lombok.Value;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.List;
 
-@Entity
-@Data
-@Table(name = "book")
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Value
+@Builder(toBuilder = true)
 public class Book {
-    @Id
-    @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_book")
-    private long idBook;
+    long idBook;
+    @NonNull
+    String slug;
+    @NonNull
+    String title;
+    String subtitle;
+    @NonNull
+    String isbn;
+    int publicationYear;
+    @Builder.Default
+    int edition = 1;
+    @NonNull
+    String publisher;
+    int numPages;
+    @NonNull
+    String sinopsis;
 
-    @Column(name = "slug", nullable = false)
-    @EqualsAndHashCode.Include
-    private String slug;
+    String coverUrl;
 
-    @Column(name = "title", nullable = false)
-    private String title;
+    @Builder.Default
+    BigDecimal rating = BigDecimal.ZERO;
+    @NonNull
+    ContentStatus status;
+    @NonNull
+    Instant createdAt;
 
-    @Column(name = "subtitle")
-    private String subtitle;
+    Instant updatedAt;
 
-    @Column(name = "isbn", nullable = false, length = 13, unique = true)
-    @EqualsAndHashCode.Include
-    private String isbn;
-
-    @Column(name = "publication_year")
-    private int publicationYear;
-
-    @Column(name = "edition", columnDefinition = "INT DEFAULT 1")
-    private int edition = 1;
-
-    @Column(name = "publisher")
-    private String publisher;
-
-    @Column(name = "num_pages", nullable = false)
-    private int numPages;
-
-    @Column(name = "synopsis", nullable = false)
-    @Lob
-    private String sinopsis;
-
-    @Column(name = "cover_url")
-    private String coverUrl;
-
-    @Column(name = "rating", columnDefinition = "DECIMAL(3, 1) DEFAULT 0.0")
-    private BigDecimal rating = BigDecimal.ZERO;
-
-    @Column(name = "status", nullable = false, columnDefinition = "VARCHAR(255) DEFAULT 'DRAFT'")
-    @Enumerated(EnumType.STRING)
-    private ContentStatus status;
-
-    @Column(name = "created_at", nullable = false)
-    @CreationTimestamp
-    private Instant createdAt;
-
-    @Column(name = "updated_at", nullable = false)
-    @UpdateTimestamp
-    private Instant updatedAt;
-
-    @ManyToOne
-    @JoinColumn(name = "fk_media_id", nullable = false)
-    private Media media;
+    @NonNull
+    Media media;
 }
