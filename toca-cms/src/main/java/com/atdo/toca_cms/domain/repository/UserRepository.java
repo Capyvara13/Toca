@@ -4,6 +4,8 @@ import com.atdo.toca_cms.application.dto.user.UserFilterDto;
 import com.atdo.toca_cms.domain.entity.User;
 import com.atdo.toca_cms.domain.util.enums.UserRole;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -46,4 +48,5 @@ public interface UserRepository {
      */
     Page<User> findAll(UserFilterDto filterDto);
 
+    void deleteById(Long id);
 }

@@ -1,7 +1,5 @@
 package com.atdo.toca_cms.adapter.persistence.entity;
 
-import com.atdo.toca_cms.domain.entity.Article;
-import com.atdo.toca_cms.domain.entity.User;
 import com.atdo.toca_cms.domain.util.enums.ContentStatus;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -25,11 +23,11 @@ public class CommentEntity {
 
     @ManyToOne
     @JoinColumn(name = "fk_article_comment", nullable = false)
-    private Article article;
+    private ArticleEntity article;
 
     @ManyToOne
     @JoinColumn(name = "fk_user_comment", nullable = false)
-    private User author;
+    private UserEntity author;
 
     @Column(name = "content", nullable = false)
     @Lob
@@ -45,10 +43,10 @@ public class CommentEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_parent_comment_id")
-    private com.atdo.toca_cms.domain.entity.Comment parent;
+    private com.atdo.toca_cms.adapter.persistence.entity.CommentEntity parent;
 
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<com.atdo.toca_cms.domain.entity.Comment> replies;
+    private List<com.atdo.toca_cms.adapter.persistence.entity.CommentEntity> replies;
 
     @Column(name = "status", nullable = false, columnDefinition = "VARCHAR(255) DEFAULT 'PENDING_REVIEW'")
     @Enumerated(EnumType.STRING)

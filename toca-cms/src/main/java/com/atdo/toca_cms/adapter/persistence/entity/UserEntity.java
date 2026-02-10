@@ -39,7 +39,7 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     private UserRole role = UserRole.COMMON;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @CreationTimestamp
     private Instant createdAt;
 
@@ -51,5 +51,9 @@ public class UserEntity {
     private boolean actived = true;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private List<Comment> comments;
+    private List<CommentEntity> comments;
+
+    @UpdateTimestamp
+    @Column(name = "last_login", nullable = false)
+    Instant lastLogin;
 }

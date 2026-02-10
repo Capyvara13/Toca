@@ -30,11 +30,11 @@ public class ArticleEntity {
 
     @ManyToOne
     @JoinColumn(name = "fk_user_article", nullable = false)
-    private User author;
+    private UserEntity author;
 
     @ManyToOne
     @JoinColumn(name = "fk_media_article", nullable = false)
-    private Media media;
+    private MediaEntity media;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -64,6 +64,6 @@ public class ArticleEntity {
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
-    public ArticleEntity(User author, Media media, @NotBlank(message = "The article must have a title.") @Size(max = 255, message = "The title can only have 255 characters.") String title, @NotBlank(message = "The article needs content in its body.") String content, @NotBlank(message = "The article needs a summary.") @Size(max = 500, message = "The summary can only have 500 characters.") String summary, ContentStatus status) {
+    public ArticleEntity(UserEntity author, MediaEntity media, @NotBlank(message = "The article must have a title.") @Size(max = 255, message = "The title can only have 255 characters.") String title, @NotBlank(message = "The article needs content in its body.") String content, @NotBlank(message = "The article needs a summary.") @Size(max = 500, message = "The summary can only have 500 characters.") String summary, ContentStatus status) {
     }
 }

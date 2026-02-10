@@ -35,7 +35,7 @@ public class SeasonEntity {
 
     @JoinColumn(name = "fk_serie_season", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    private SerieEntity serieEntity;
+    private SerieEntity serie;
 
     @Column(name = "created_at", nullable = false)
     @CreationTimestamp

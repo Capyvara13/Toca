@@ -10,42 +10,18 @@ import java.time.Instant;
  * Data Transfer Object (DTO) to encapsulate filter and pagination criteria
  * when searching for User entities.
  */
-@Getter
-@Setter
-public class UserFilterDto {
-    // --- Filtering criteria related to username and role ---
-    /**
-     * Filters by usernames that are identical to or related to the text in the String.
-     */
-    private String username;
-    /**
-     *  Filter by level of abstraction: ADMIN, EDITOR, or COMMON.
-     */
-    private UserRole role;
-
-    // --- Filtering criteria related to creation and update dates ---
-    /**
-     * Filters users created **on or after** this point in time (Instant).
-     */
-    private Instant createdAfter;
-
-    /**
-     * Filters users updated **on or after** this point in time (Instant).
-     */
-    private Instant updatedAfter;
-    /**
-     * Filters users created **before** this point in time (Instant).
-     */
-    private Instant createdBefore;
-
-    // --- Pagination criteria ---
-    /**
-     * The **page number** to retrieve (zero-based index). Default: 0 (first page).
-     */
-    private Integer page = 0;
-
-    /**
-     * The maximum number of items (users) per page (page size). Default: 10.
-     */
-    private Integer size = 10;
+public record UserFilterDto(
+        String username,
+        UserRole role,
+        Instant createdAfter,
+        Instant updatedAfter,
+        Instant createdBefore,
+        Integer page,
+        Integer size
+) {
+    // Construtor compacto para definir valores padrão, caso venham nulos
+    public UserFilterDto {
+        if (page == null) page = 0;
+        if (size == null) size = 10;
+    }
 }

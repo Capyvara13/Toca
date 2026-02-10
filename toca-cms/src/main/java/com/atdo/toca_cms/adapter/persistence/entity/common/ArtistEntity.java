@@ -51,5 +51,5 @@ public class ArtistEntity {
     private Instant updatedAt;
 
     @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CastAndCrew> castAndCrew;
+    private List<CastAndCrewEntity> castAndCrew;
 }

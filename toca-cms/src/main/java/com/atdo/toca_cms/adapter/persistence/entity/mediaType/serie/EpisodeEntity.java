@@ -34,5 +34,5 @@ public class EpisodeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_season_episode")
-    private SeasonEntity seasonEntity;
+    private SeasonEntity season;
 }

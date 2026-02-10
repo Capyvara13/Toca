@@ -1,5 +1,6 @@
 package com.atdo.toca_cms.adapter.persistence.entity;
 
+import com.atdo.toca_cms.adapter.persistence.entity.common.CastAndCrewEntity;
 import com.atdo.toca_cms.domain.entity.common.CastAndCrew;
 import com.atdo.toca_cms.domain.util.enums.MediaType;
 import jakarta.persistence.*;
@@ -35,5 +36,5 @@ public class MediaEntity {
     private Instant updatedAt;
 
     @OneToMany(mappedBy = "media", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CastAndCrew> castAndCrews;
+    private List<CastAndCrewEntity> castAndCrews;
 }

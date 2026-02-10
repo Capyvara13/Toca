@@ -33,7 +33,7 @@ A espinha dorsal do sistema, desenvolvida em **Java**, atuando como a API oficia
 
 * **Frontend:** HTML5, CSS3, JavaScript (Vanilla).
 * **Backend:** Java (API Toca CMS).
-* **Banco de Dados:** MySQL/PostgreSQL.
+* **Banco de Dados:** MySQL.
 * **Gerenciamento:** Toca CMS para controle total de posts e usuários.
 
 ---
