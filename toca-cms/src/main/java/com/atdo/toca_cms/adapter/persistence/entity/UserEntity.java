@@ -1,6 +1,5 @@
 package com.atdo.toca_cms.adapter.persistence.entity;
 
-import com.atdo.toca_cms.domain.entity.Comment;
 import com.atdo.toca_cms.domain.util.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -28,8 +27,8 @@ public class UserEntity {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "password_hash", length = 60, nullable = false)
-    private String passwordHash;
+    @Column(name = "password", length = 60, nullable = false)
+    private String password;
 
     @Column(name = "bio")
     @Lob
@@ -47,8 +46,8 @@ public class UserEntity {
     @UpdateTimestamp
     private Instant updatedAt;
 
-    @Column(name = "actived", columnDefinition = "BOOLEAN DEFAULT TRUE")
-    private boolean actived = true;
+    @Column(name = "active", columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private boolean active = true;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<CommentEntity> comments;

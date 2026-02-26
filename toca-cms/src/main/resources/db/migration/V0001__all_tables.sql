@@ -2,17 +2,14 @@
 -- TOCA CMS - COMPLETE DATABASE SCHEMA (MySQL/InnoDB)
 -- ======================================================
 
--- 1. CORE MODULE
--- Independent tables or those with minimal dependencies
-
 CREATE TABLE IF NOT EXISTS user (
     id_user BIGINT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
-    password_hash VARCHAR(60) NOT NULL,
+    password VARCHAR(60) NOT NULL,
     bio LONGTEXT,
     role VARCHAR(255) DEFAULT 'COMMON',
-    is_actived BOOLEAN DEFAULT TRUE,
+    active BOOLEAN DEFAULT TRUE,
     last_login DATETIME(6),
     created_at DATETIME(6) NOT NULL,
     updated_at DATETIME(6) NOT NULL
@@ -75,6 +72,7 @@ CREATE TABLE IF NOT EXISTS comment (
     fk_parent_comment_id BIGINT,
     created_at DATETIME(6) NOT NULL,
     updated_at DATETIME(6) NOT NULL,
+    status VARCHAR(255) DEFAULT 'DRAFT' NOT NULL,
     CONSTRAINT fk_comment_article FOREIGN KEY (fk_article_comment) REFERENCES article(id_article) ON DELETE CASCADE,
     CONSTRAINT fk_comment_user FOREIGN KEY (fk_user_comment) REFERENCES user(id_user),
     CONSTRAINT fk_comment_parent FOREIGN KEY (fk_parent_comment_id) REFERENCES comment(id_comment) ON DELETE CASCADE

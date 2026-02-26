@@ -1,12 +1,11 @@
 package com.atdo.toca_cms.application.dto.media;
 
+import com.atdo.toca_cms.adapter.persistence.entity.common.CastAndCrewEntity;
 import com.atdo.toca_cms.domain.util.enums.MediaType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.Instant;
+import java.util.List;
 
 @Setter
 @Getter
@@ -34,4 +33,7 @@ public class MediaResponseDto {
      */
     private Instant updatedAt;
 
+
+    public MediaResponseDto(long mediaId, @NonNull MediaType mediaType, @NonNull Instant createdAt, Instant updatedAt, List<CastAndCrewEntity> castAndCrews) {
+    }
 }

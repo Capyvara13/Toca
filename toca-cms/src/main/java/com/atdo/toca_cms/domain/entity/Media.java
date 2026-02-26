@@ -1,5 +1,6 @@
 package com.atdo.toca_cms.domain.entity;
 
+import com.atdo.toca_cms.adapter.persistence.entity.common.CastAndCrewEntity;
 import com.atdo.toca_cms.domain.entity.common.CastAndCrew;
 import com.atdo.toca_cms.domain.util.enums.MediaType;
 import lombok.Builder;
@@ -22,5 +23,5 @@ public class Media {
 
     Instant updatedAt;
 
-    List<CastAndCrew> castAndCrews;
+    List<CastAndCrewEntity> castAndCrews;
 }

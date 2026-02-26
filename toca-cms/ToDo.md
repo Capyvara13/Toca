@@ -1,6 +1,8 @@
 # Things To Do
 
-- UserUsecase
-- JpaUserRepository (Query)
-- UserPersistenceMapper (Impl)
-- UserPersistenceAdapter (repository pub)
+- ClassUsecase
+- JpaClassRepository (Query)
+- ClassPersistenceMapper (Impl)
+- ClassSpecification
+- ClassPersistenceAdapter (repository pub)
+- ClassController

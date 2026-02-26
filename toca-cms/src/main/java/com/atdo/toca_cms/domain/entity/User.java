@@ -20,14 +20,13 @@
         String email;
 
         @NonNull
-        String passwordHash;
+        String password;
 
         String bio;
 
         @Builder.Default
         UserRole role = UserRole.COMMON;
 
-        @NonNull
         Instant createdAt;
 
         Instant updatedAt;

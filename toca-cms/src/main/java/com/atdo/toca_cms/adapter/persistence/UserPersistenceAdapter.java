@@ -6,10 +6,12 @@ import com.atdo.toca_cms.adapter.persistence.mapper.UserPersistenceMapper;
 import com.atdo.toca_cms.application.dto.user.UserFilterDto;
 import com.atdo.toca_cms.domain.entity.User;
 import com.atdo.toca_cms.domain.repository.UserRepository;
+import com.atdo.toca_cms.infrastructure.persistence.specification.UserSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,12 +37,6 @@ public class UserPersistenceAdapter implements UserRepository {
         return jpaUserRepository.findById(id).map(mapper::toDomain);
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public Optional<User> findByEmail(String email) {
-        return jpaUserRepository.findByEmail(email).map(mapper::toDomain);
-    }
-
     @Transactional(readOnly = true)
     @Override
     public Page<User> findAll(UserFilterDto filterDto) {
@@ -49,7 +45,19 @@ public class UserPersistenceAdapter implements UserRepository {
                 filterDto.getSize() != null ? filterDto.getSize() : 10
         );
 
-        return jpaUserRepository.findAll(pageable)
+        Specification<UserEntity> specification = UserSpecification.withFilter(filterDto);
+
+        return jpaUserRepository.findAll(specification, pageable)
                 .map(mapper::toDomain);
+    }
+
+    @Override
+    public Optional<User> findByEmailOrUsername(String email, String username) {
+        return jpaUserRepository.findByEmailOrUsername(email, username).map(mapper::toDomain);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        jpaUserRepository.deleteById(id);
     }
 }

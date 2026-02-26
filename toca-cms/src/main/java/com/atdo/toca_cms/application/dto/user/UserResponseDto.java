@@ -42,7 +42,7 @@ public class UserResponseDto {
     /**
      * Status indicating if the user is active.
      */
-    private Boolean actived;
+    private Boolean active;
 
     /**
      * The instant when the user record was created.

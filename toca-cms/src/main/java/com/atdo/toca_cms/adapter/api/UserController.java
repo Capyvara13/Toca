@@ -1,6 +1,7 @@
 package com.atdo.toca_cms.adapter.api;
 
 import com.atdo.toca_cms.application.dto.user.UserFilterDto;
+import com.atdo.toca_cms.application.dto.user.UserResponseDto;
 import com.atdo.toca_cms.application.usecase.UserUsecase;
 import com.atdo.toca_cms.domain.entity.User;
 import jakarta.validation.Valid;
@@ -11,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping(value = "/api/v1/users")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -43,7 +44,20 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<User>> list(UserFilterDto filter) {
-        return ResponseEntity.ok(userUsecase.findAll(filter));
+    public ResponseEntity<Page<UserResponseDto>> list(UserFilterDto filter) {
+        Page<User> userPage = userUsecase.findAll(filter);
+
+        Page<UserResponseDto> responsePage = userPage.map(user -> new UserResponseDto(
+                user.getIdUser(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getBio(),
+                user.getRole(),
+                user.isActive(),
+                user.getCreatedAt(),
+                user.getUpdatedAt()
+        ));
+
+        return ResponseEntity.ok(responsePage);
     }
 }

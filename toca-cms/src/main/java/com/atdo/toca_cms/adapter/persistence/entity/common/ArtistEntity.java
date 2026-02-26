@@ -1,6 +1,5 @@
 package com.atdo.toca_cms.adapter.persistence.entity.common;
 
-import com.atdo.toca_cms.domain.entity.common.CastAndCrew;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

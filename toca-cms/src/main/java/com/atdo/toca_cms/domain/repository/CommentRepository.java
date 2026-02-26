@@ -45,4 +45,6 @@ public interface CommentRepository {
      * that satisfy the filter, along with pagination metadata.
      */
     Page<Comment> findAll(CommentFilterDto filterDto);
+
+    void deleteById(Long commentId);
 }

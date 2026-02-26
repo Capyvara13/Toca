@@ -2,7 +2,6 @@ package com.atdo.toca_cms.domain.repository;
 
 import com.atdo.toca_cms.application.dto.media.MediaFilterDto;
 import com.atdo.toca_cms.domain.entity.Media;
-import com.atdo.toca_cms.domain.util.enums.MediaType;
 import org.springframework.data.domain.Page;
 
 import java.util.Optional;
@@ -36,4 +35,6 @@ public interface MediaRepository {
      * @return A page of Media entities matching the filter criteria.
      */
     Page<Media> findAll(MediaFilterDto filterDto);
+
+    void deleteById(Long mediaId);
 }

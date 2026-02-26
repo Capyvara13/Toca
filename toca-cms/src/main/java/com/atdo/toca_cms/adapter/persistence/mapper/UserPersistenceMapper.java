@@ -12,12 +12,12 @@ public class UserPersistenceMapper {
         entity.setIdUser(domain.getIdUser());
         entity.setBio(domain.getBio());
         entity.setEmail(domain.getEmail());
-        entity.setActived(domain.isActive());
+        entity.setActive(domain.isActive());
         entity.setRole(domain.getRole());
         entity.setComments(null);
         entity.setCreatedAt(domain.getCreatedAt());
         entity.setUpdatedAt(domain.getUpdatedAt());
-        entity.setPasswordHash(domain.getPasswordHash());
+        entity.setPassword(domain.getPassword());
         entity.setUsername(domain.getUsername());
         entity.setLastLogin(domain.getLastLogin());
         return entity;
@@ -30,12 +30,12 @@ public class UserPersistenceMapper {
                 .idUser(entity.getIdUser())
                 .bio(entity.getBio())
                 .email(entity.getEmail())
-                .active(entity.isActived())
+                .active(entity.isActive())
                 .role(entity.getRole())
                 .comments(null)
                 .createdAt(entity.getCreatedAt())
                 .updatedAt(entity.getUpdatedAt())
-                .passwordHash(entity.getPasswordHash())
+                .password(entity.getPassword())
                 .username(entity.getUsername())
                 .lastLogin(entity.getLastLogin())
                 .build();

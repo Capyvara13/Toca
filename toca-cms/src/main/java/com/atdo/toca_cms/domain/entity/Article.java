@@ -3,6 +3,7 @@ package com.atdo.toca_cms.domain.entity;
 import com.atdo.toca_cms.domain.util.enums.ContentStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NonNull;
 import lombok.Value;

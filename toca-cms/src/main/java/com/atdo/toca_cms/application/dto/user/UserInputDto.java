@@ -48,11 +48,11 @@ public class UserInputDto {
      * The user's role in the system (e.g., COMMON, ADMIN).
      * Mapped to the 'role' field in the Entity.
      */
-    private UserRole role; // Renomeado de userRole para 'role' para coincidir com a Entidade
+    private UserRole role;
 
     /**
      * Status indicating if the user is active.
      * If not provided, the default (true) is applied by the system/database.
      */
-    private Boolean actived; // Removido o default (= true)
+    private Boolean active;
 }

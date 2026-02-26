@@ -7,29 +7,35 @@ import com.atdo.toca_cms.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class UserUsecase {
-    @Autowired
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public User searchOrFail(Long userId) {
-        return userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException(("User not found!")));
+        return userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found!"));
     }
 
     @Transactional(readOnly = true)
     public Page<User> findAll(UserFilterDto filterDto) {
-        // A lógica de paginação e mapeamento de entidade para domínio
-        // já está implementada no seu UserPersistenceAdapter.
         return userRepository.findAll(filterDto);
     }
 
     @Transactional
     public User save(User user) {
-        return userRepository.save(user);
+
+
+        User userWithEncodedPassword = user.toBuilder()
+                .password(passwordEncoder.encode(user.getPassword()))
+                .build();
+
+        return userRepository.save(userWithEncodedPassword);
     }
 
     @Transactional
@@ -37,5 +43,19 @@ public class UserUsecase {
         userRepository.findById(userId).ifPresent(user -> {
             userRepository.deleteById(userId);
         });
+    }
+
+    public User findByEmailOrUsername(String email, String username) {
+        return userRepository.findByEmailOrUsername(email, username).orElseThrow(() -> new RuntimeException("User with this email not found!"));
+    }
+
+    public User authenticate(String loginIdentifier, String rawPassword) {
+        User user = userRepository.findByEmailOrUsername(loginIdentifier, loginIdentifier).orElseThrow(() -> new RuntimeException("User with this email not found!"));
+
+        if (!passwordEncoder.matches(rawPassword, user.getPassword())) {
+            throw new RuntimeException("Invalid credentials!");
+        }
+
+        return user;
     }
 }
