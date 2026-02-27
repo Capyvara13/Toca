@@ -1,10 +1,9 @@
 package com.atdo.toca_cms.application.dto.article;
 
+import com.atdo.toca_cms.domain.entity.Media;
+import com.atdo.toca_cms.domain.entity.User;
 import com.atdo.toca_cms.domain.util.enums.ContentStatus;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.Instant;
 
@@ -73,4 +72,7 @@ public class ArticleResponseDto {
      * The instant when the article was last updated.
      */
     private Instant updatedAt;
+
+    public ArticleResponseDto(long idArticle, @NonNull String slug, @NonNull User author, @NonNull Media media, @NonNull String title, @NonNull String content, String summary, @NonNull Instant createdAt, Instant updatedAt) {
+    }
 }

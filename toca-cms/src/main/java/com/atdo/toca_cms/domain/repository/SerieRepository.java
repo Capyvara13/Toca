@@ -52,4 +52,6 @@ public interface SerieRepository {
      * {@link Serie} records that match the filter, plus pagination metadata.
      */
     Page<Serie> findAll(SerieFilterDto filterDto);
+
+    void deleteById(Long id);
 }

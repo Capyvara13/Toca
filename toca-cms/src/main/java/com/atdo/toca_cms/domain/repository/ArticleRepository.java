@@ -59,4 +59,5 @@ public interface ArticleRepository {
     Page<Article> findAll(ArticleFilterDto filterDto);
 
 
+    void deleteById(Long id);
 }

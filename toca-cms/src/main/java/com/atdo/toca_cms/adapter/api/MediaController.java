@@ -4,6 +4,7 @@ import com.atdo.toca_cms.application.dto.media.MediaFilterDto;
 import com.atdo.toca_cms.application.dto.media.MediaResponseDto;
 import com.atdo.toca_cms.application.usecase.MediaUsecase;
 import com.atdo.toca_cms.domain.entity.Media;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,12 @@ public class MediaController {
     }
 
     @PostMapping
+    public ResponseEntity<Media> create(@RequestBody @Valid Media media) {
+        Media savedMedia = mediaUsecase.save(media);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedMedia);
+    }
+
+    @PutMapping("/{mediaId}")
     public ResponseEntity<Media> update(@PathVariable Long mediaId, @RequestBody Media media) {
         Media mediaWithId = media.toBuilder().mediaId(mediaId).build();
         Media updatedMedia = mediaUsecase.save(mediaWithId);

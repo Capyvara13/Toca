@@ -52,4 +52,6 @@ public interface MusicRepository {
      * {@link Music} records that match the filter, plus pagination metadata.
      */
     Page<Music> findAll(MusicFilterDto filterDto);
+
+    void deleteById(Long id);
 }

@@ -42,4 +42,6 @@ public interface PlatformRepository {
      * {@link Platform} records that match the filter, plus pagination metadata.
      */
     Page<Platform> findAll(PlatformFilterDto filterDto);
+
+    void deleteById(Long id);
 }

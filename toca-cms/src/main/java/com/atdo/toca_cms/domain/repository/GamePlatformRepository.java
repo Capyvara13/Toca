@@ -1,6 +1,6 @@
 package com.atdo.toca_cms.domain.repository;
 
-import com.atdo.toca_cms.application.dto.mediaTypeDto.gameTypeDto.game.GameFilterDto;
+import com.atdo.toca_cms.application.dto.mediaTypeDto.gameTypeDto.gamePlatform.GamePlatformFilterDto;
 import com.atdo.toca_cms.domain.entity.mediaType.game.GamePlatform;
 import com.atdo.toca_cms.domain.entity.mediaType.game.GamePlatformId;
 import org.springframework.data.domain.Page;
@@ -44,5 +44,7 @@ public interface GamePlatformRepository {
      * @return A page of results ({@link Page}) containing the list of
      * {@link GamePlatform} records that match the filter, plus pagination metadata.
      */
-    Page<GamePlatform> findAll(GameFilterDto filterDto);
+    Page<GamePlatform> findAll(GamePlatformFilterDto filterDto);
+
+    void deleteById(Long id);
 }

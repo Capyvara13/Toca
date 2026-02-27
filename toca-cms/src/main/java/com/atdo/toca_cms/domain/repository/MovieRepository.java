@@ -52,4 +52,6 @@ public interface MovieRepository {
      * {@link Movie} records that match the filter, plus pagination metadata.
      */
     Page<Movie> findAll(MovieFilterDto filterDto);
+
+    void deleteById(Long id);
 }

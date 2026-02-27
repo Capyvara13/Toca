@@ -43,4 +43,6 @@ public interface ArtistRepository {
      * @return A page of Artists matching the filter criteria.
      */
     Page<Artist> findAll(ArtistFilterDto filterDto);
+
+    void deleteById(Long id);
 }

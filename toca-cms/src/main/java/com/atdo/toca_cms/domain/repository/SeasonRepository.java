@@ -43,4 +43,6 @@ public interface SeasonRepository {
      * {@link Season} records that match the filter, plus pagination metadata.
      */
     Page<Season> findAll(SeasonFilterDto filterDto);
+
+    void deleteById(Long id);
 }

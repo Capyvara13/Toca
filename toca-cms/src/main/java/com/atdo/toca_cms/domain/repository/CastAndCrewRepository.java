@@ -37,4 +37,6 @@ public interface CastAndCrewRepository {
      * @return A page of CastAndCrew entities matching the filter criteria.
      */
     Page<CastAndCrew> findAll(CastAndCrewFilterDto filterDto);
+
+    void deleteById(Long id);
 }

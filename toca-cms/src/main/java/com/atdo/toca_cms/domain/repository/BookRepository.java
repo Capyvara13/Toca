@@ -45,4 +45,6 @@ public interface BookRepository {
      * @return A page of Book entities matching the filter criteria.
      */
     Page<Book> findAll(BookFilterDto filterDto);
+
+    void deleteById(Long id);
 }

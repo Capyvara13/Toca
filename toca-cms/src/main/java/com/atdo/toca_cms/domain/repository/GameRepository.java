@@ -57,4 +57,6 @@ public interface GameRepository {
      * that satisfy the filter, along with pagination metadata.
      */
     Page<Game> findAll(GameFilterDto filterDto);
+
+    void deleteById(Long id);
 }

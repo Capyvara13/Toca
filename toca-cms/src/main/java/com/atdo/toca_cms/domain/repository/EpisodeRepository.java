@@ -46,4 +46,6 @@ public interface EpisodeRepository {
      * that match the filter criteria, along with relevant pagination metadata.
      */
     Page<Episode> findAll(EpisodeFilterDto filterDto);
+
+    void deleteById(Long id);
 }

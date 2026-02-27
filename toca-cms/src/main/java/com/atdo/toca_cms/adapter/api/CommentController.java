@@ -4,6 +4,7 @@ import com.atdo.toca_cms.application.dto.comment.CommentFilterDto;
 import com.atdo.toca_cms.application.dto.comment.CommentResponseDto;
 import com.atdo.toca_cms.application.usecase.CommentUsecase;
 import com.atdo.toca_cms.domain.entity.Comment;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,13 @@ public class CommentController {
     }
 
     @PostMapping
+    public ResponseEntity<Comment> create(@RequestBody @Valid Comment comment) {
+        Comment savedComment = commentUsecase.save(comment);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedComment);
+    }
+
+
+    @PutMapping("/{id}")
     public ResponseEntity<Comment> update(@PathVariable Long id, @RequestBody Comment comment) {
         Comment commentWithId = comment.toBuilder().idComment(id).build();
         Comment updatedComment = commentUsecase.save(commentWithId);
