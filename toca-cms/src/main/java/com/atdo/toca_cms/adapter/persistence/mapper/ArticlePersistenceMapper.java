@@ -31,6 +31,7 @@ public class ArticlePersistenceMapper {
 
         return entity;
     }
+
     public Article toDomain(ArticleEntity entity) {
         if (entity == null) return null;
 
