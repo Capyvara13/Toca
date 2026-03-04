@@ -16,7 +16,6 @@ public class GamePlatformEntity {
     private GamePlatformIdEntity id;
 
     @MapsId("gameId")
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_game_id")
     private GameEntity game;

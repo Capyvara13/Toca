@@ -1,18 +1,18 @@
 package com.atdo.toca_cms.adapter.persistence.mapper;
 
 import com.atdo.toca_cms.adapter.persistence.entity.common.ArtistEntity;
-import com.atdo.toca_cms.adapter.persistence.entity.common.CastAndCrewEntity;
 import com.atdo.toca_cms.domain.entity.common.Artist;
-import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-
 @Component
-@RequiredArgsConstructor
 public class ArtistPersistenceMapper {
 
     private final CastAndCrewPersistenceMapper castAndCrewMapper;
+
+    public ArtistPersistenceMapper (@Lazy CastAndCrewPersistenceMapper castAndCrewMapper) {
+        this.castAndCrewMapper = castAndCrewMapper;
+    }
 
     public ArtistEntity toEntity(Artist domain) {
         if (domain == null) return null;
