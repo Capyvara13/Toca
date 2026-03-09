@@ -1,9 +1,9 @@
 package com.atdo.toca_cms.application.dto.mediaTypeDto.serieTypeDto.episode;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.atdo.toca_cms.domain.entity.mediaType.serie.Season;
+import lombok.*;
+
+import java.time.Instant;
 
 @Setter
 @Getter
@@ -40,4 +40,7 @@ public class EpisodeResponseDto {
      * URL for the episode's poster image.
      */
     private String posterUrl;
+
+    public EpisodeResponseDto(long idEpisode, @NonNull String title, @NonNull String synopsis, int seasonNum, String posterUrl, @NonNull Season season, @NonNull Instant createdAt, Instant updatedAt) {
+    }
 }

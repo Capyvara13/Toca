@@ -16,6 +16,7 @@ public class CastAndCrewUsecase {
     @Autowired
     private final CastAndCrewPersistenceAdapter adapter;
 
+    @Transactional(readOnly = true)
     public CastAndCrew searchOrFail(Long id) {
         return adapter.findById(id).orElseThrow(() -> new EntityNotFoundException("Cast and Crew not found with this id!"));
     }

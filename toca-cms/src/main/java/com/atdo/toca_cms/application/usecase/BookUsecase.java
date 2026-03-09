@@ -16,7 +16,8 @@ public class BookUsecase {
     @Autowired
     private final BookPersistenceAdapter adapter;
 
-    public Book searchOrFail(Long id) {
+    @Transactional(readOnly = true)
+    public Book searchByIdOrFail(Long id) {
         return adapter.findById(id).orElseThrow(() -> new EntityNotFoundException("Book not found by id!"));
     }
 
@@ -26,7 +27,7 @@ public class BookUsecase {
     }
 
     @Transactional(readOnly = true)
-    public Book findBySlug(String slug) {
+    public Book searchBySlugOrFail(String slug) {
         return adapter.findBySlug(slug).orElseThrow(() -> new EntityNotFoundException("Book not found by slug!"));
     }
 

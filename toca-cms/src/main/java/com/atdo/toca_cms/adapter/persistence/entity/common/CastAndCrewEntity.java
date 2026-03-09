@@ -47,26 +47,14 @@ public class CastAndCrewEntity {
 
     public List<RoleType> getRolesSuggestion() {
         MediaType mediaType = getMediaType();
-        RoleType.DomainType domain = null;
+        RoleType.DomainType domain = switch (mediaType) {
+            case MOVIE -> RoleType.DomainType.MOVIES;
+            case SERIE -> RoleType.DomainType.SERIES;
+            case MUSIC -> RoleType.DomainType.MUSICS;
+            case BOOK -> RoleType.DomainType.BOOKS;
+            case GAME -> RoleType.DomainType.GAMES;
+        };
 
-
-        switch (mediaType) {
-            case MOVIE:
-                domain = RoleType.DomainType.MOVIES;
-                break;
-            case SERIE:
-                domain = RoleType.DomainType.SERIES;
-                break;
-            case MUSIC:
-                domain = RoleType.DomainType.MUSICS;
-                break;
-            case BOOK:
-                domain = RoleType.DomainType.BOOKS;
-                break;
-            case GAME:
-                domain = RoleType.DomainType.GAMES;
-                break;
-        }
 
         return RoleType.getRolesForDomain(domain);
     }

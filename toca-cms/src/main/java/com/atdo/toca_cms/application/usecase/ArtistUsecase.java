@@ -16,8 +16,14 @@ public class ArtistUsecase {
     @Autowired
     private final ArtistPersistenceAdapter adapter;
 
-    public Artist searchOrFail(Long id) {
+    @Transactional(readOnly = true)
+    public Artist searchByIdOrFail(Long id) {
         return adapter.findById(id).orElseThrow(() -> new EntityNotFoundException("Artist not found with this id!"));
+    }
+
+    @Transactional(readOnly = true)
+    public Artist searchBySlugOrFail(String slug) {
+        return adapter.findBySlug(slug).orElseThrow(() -> new EntityNotFoundException("Artist with this slug not found!"));
     }
 
     @Transactional(readOnly = true)

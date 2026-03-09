@@ -19,7 +19,13 @@ public class ArticleController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Article> findById(@PathVariable Long id) {
-        Article article = usecase.searchOrFail(id);
+        Article article = usecase.searchByIdOrFail(id);
+        return ResponseEntity.ok(article);
+    }
+
+    @GetMapping("/{slug}")
+    public ResponseEntity<Article> findBySlug(@PathVariable String slug) {
+        Article article = usecase.searchBySlugOrFail(slug);
         return ResponseEntity.ok(article);
     }
 

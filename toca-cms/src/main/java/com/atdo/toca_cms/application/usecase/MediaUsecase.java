@@ -16,6 +16,7 @@ public class MediaUsecase {
     @Autowired
     private final MediaPersistenceAdapter adapter;
 
+    @Transactional(readOnly = true)
     public Media searchOrFail(Long mediaId) {
         return adapter.findById(mediaId).orElseThrow(() -> new EntityNotFoundException("Media not found!"));
     }

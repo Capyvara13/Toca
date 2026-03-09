@@ -1,12 +1,12 @@
 package com.atdo.toca_cms.adapter.persistence;
 
-import com.atdo.toca_cms.adapter.persistence.entity.common.ArtistEntity;
-import com.atdo.toca_cms.adapter.persistence.jpa.JpaArtistRepository;
-import com.atdo.toca_cms.adapter.persistence.mapper.ArtistPersistenceMapper;
-import com.atdo.toca_cms.application.dto.artist.ArtistFilterDto;
-import com.atdo.toca_cms.domain.entity.common.Artist;
-import com.atdo.toca_cms.domain.repository.ArtistRepository;
-import com.atdo.toca_cms.infrastructure.persistence.specification.ArtistSpecification;
+import com.atdo.toca_cms.adapter.persistence.entity.mediaType.music.MusicEntity;
+import com.atdo.toca_cms.adapter.persistence.jpa.JpaMusicRepository;
+import com.atdo.toca_cms.adapter.persistence.mapper.MusicPersistenceMapper;
+import com.atdo.toca_cms.application.dto.mediaTypeDto.musicTypeDto.MusicFilterDto;
+import com.atdo.toca_cms.domain.entity.mediaType.music.Music;
+import com.atdo.toca_cms.domain.repository.MusicRepository;
+import com.atdo.toca_cms.infrastructure.persistence.specification.MusicSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,39 +19,39 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class ArtistPersistenceAdapter implements ArtistRepository {
-    private final JpaArtistRepository jpaRepository;
-    private final ArtistPersistenceMapper mapper;
+public class MusicPersistenceAdapter implements MusicRepository {
+    private final MusicPersistenceMapper mapper;
+    private final JpaMusicRepository jpaRepository;
 
     @Override
     @Transactional
-    public Artist save(Artist artist) {
-        ArtistEntity entity = mapper.toEntity(artist);
-        ArtistEntity savedEntity = jpaRepository.save(entity);
+    public Music save(Music music){
+        MusicEntity entity = mapper.toEntity(music);
+        MusicEntity savedEntity = jpaRepository.save(entity);
         return mapper.toDomain(savedEntity);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Artist> findById(Long id) {
+    public Optional<Music> findById(Long id) {
         return jpaRepository.findById(id).map(mapper::toDomain);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Artist> findBySlug(String slug) {
+    public Optional<Music> findBySlug(String slug) {
         return jpaRepository.findBySlug(slug).map(mapper::toDomain);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Page<Artist> findAll(ArtistFilterDto filterDto) {
+    public Page<Music> findAll(MusicFilterDto filterDto) {
         Pageable pageable = PageRequest.of(
                 filterDto.getPage() != null ? filterDto.getPage() : 0,
                 filterDto.getSize() != null ? filterDto.getSize() : 10
         );
 
-        Specification<ArtistEntity> specification = ArtistSpecification.withFilter(filterDto);
+        Specification<MusicEntity> specification = MusicSpecification.withFilter(filterDto);
 
         return jpaRepository.findAll(specification, pageable).map(mapper::toDomain);
     }

@@ -1,12 +1,12 @@
 package com.atdo.toca_cms.adapter.persistence;
 
-import com.atdo.toca_cms.adapter.persistence.entity.common.ArtistEntity;
-import com.atdo.toca_cms.adapter.persistence.jpa.JpaArtistRepository;
-import com.atdo.toca_cms.adapter.persistence.mapper.ArtistPersistenceMapper;
-import com.atdo.toca_cms.application.dto.artist.ArtistFilterDto;
-import com.atdo.toca_cms.domain.entity.common.Artist;
-import com.atdo.toca_cms.domain.repository.ArtistRepository;
-import com.atdo.toca_cms.infrastructure.persistence.specification.ArtistSpecification;
+import com.atdo.toca_cms.adapter.persistence.entity.mediaType.serie.SerieEntity;
+import com.atdo.toca_cms.adapter.persistence.jpa.JpaSerieRepository;
+import com.atdo.toca_cms.adapter.persistence.mapper.SeriePersistenceMapper;
+import com.atdo.toca_cms.application.dto.mediaTypeDto.serieTypeDto.serie.SerieFilterDto;
+import com.atdo.toca_cms.domain.entity.mediaType.serie.Serie;
+import com.atdo.toca_cms.domain.repository.SerieRepository;
+import com.atdo.toca_cms.infrastructure.persistence.specification.SerieSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,39 +19,39 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class ArtistPersistenceAdapter implements ArtistRepository {
-    private final JpaArtistRepository jpaRepository;
-    private final ArtistPersistenceMapper mapper;
+public class SeriePersistenceAdapter implements SerieRepository {
+    private final SeriePersistenceMapper mapper;
+    private final JpaSerieRepository jpaRepository;
 
     @Override
     @Transactional
-    public Artist save(Artist artist) {
-        ArtistEntity entity = mapper.toEntity(artist);
-        ArtistEntity savedEntity = jpaRepository.save(entity);
+    public Serie save(Serie serie) {
+        SerieEntity entity = mapper.toEntity(serie);
+        SerieEntity savedEntity = jpaRepository.save(entity);
         return mapper.toDomain(savedEntity);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Artist> findById(Long id) {
+    public Optional<Serie> findById(Long id) {
         return jpaRepository.findById(id).map(mapper::toDomain);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Artist> findBySlug(String slug) {
+    public Optional<Serie> findBySlug(String slug) {
         return jpaRepository.findBySlug(slug).map(mapper::toDomain);
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public Page<Artist> findAll(ArtistFilterDto filterDto) {
+    @Transactional
+    public Page<Serie> findAll(SerieFilterDto filterDto) {
         Pageable pageable = PageRequest.of(
                 filterDto.getPage() != null ? filterDto.getPage() : 0,
                 filterDto.getSize() != null ? filterDto.getSize() : 10
         );
 
-        Specification<ArtistEntity> specification = ArtistSpecification.withFilter(filterDto);
+        Specification<SerieEntity> specification = SerieSpecification.withFilter(filterDto);
 
         return jpaRepository.findAll(specification, pageable).map(mapper::toDomain);
     }

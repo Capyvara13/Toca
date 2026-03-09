@@ -1,8 +1,8 @@
 package com.atdo.toca_cms.application.usecase;
 
-import com.atdo.toca_cms.adapter.persistence.PlatformPersistenceAdapter;
-import com.atdo.toca_cms.application.dto.mediaTypeDto.gameTypeDto.platform.PlatformFilterDto;
-import com.atdo.toca_cms.domain.entity.mediaType.game.Platform;
+import com.atdo.toca_cms.adapter.persistence.SeasonPersistenceAdapter;
+import com.atdo.toca_cms.application.dto.mediaTypeDto.serieTypeDto.season.SeasonFilterDto;
+import com.atdo.toca_cms.domain.entity.mediaType.serie.Season;
 import com.atdo.toca_cms.domain.exceptions.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,28 +12,28 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class PlatformUsecase {
+public class SeasonUsecase {
     @Autowired
-    private final PlatformPersistenceAdapter adapter;
+    private final SeasonPersistenceAdapter adapter;
 
     @Transactional(readOnly = true)
-    public Platform searchOrFail(Long id) {
-        return adapter.findById(id).orElseThrow(() -> new EntityNotFoundException("Platform not found!"));
+    public Season searchOrFail(Long id) {
+        return adapter.findById(id).orElseThrow(() -> new EntityNotFoundException("Season not found with this id!"));
     }
 
     @Transactional(readOnly = true)
-    public Page<Platform> findAll(PlatformFilterDto filterDto) {
+    public Page<Season> findAll(SeasonFilterDto filterDto) {
         return adapter.findAll(filterDto);
     }
 
     @Transactional
-    public Platform save(Platform platform) {
-        return adapter.save(platform);
+    public Season save(Season season) {
+        return adapter.save(season);
     }
 
     @Transactional
     public void delete(Long id) {
-        adapter.findById(id).ifPresent(platform -> {
+        adapter.findById(id).ifPresent(season -> {
             adapter.deleteById(id);
         });
     }

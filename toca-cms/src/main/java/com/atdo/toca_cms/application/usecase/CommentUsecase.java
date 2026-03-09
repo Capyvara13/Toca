@@ -16,6 +16,7 @@ public class CommentUsecase {
     @Autowired
     private final CommentPersistenceAdapter adapter;
 
+    @Transactional(readOnly = true)
     public Comment searchOrFail(Long commentId) {
         return adapter.findById(commentId).orElseThrow(() -> new EntityNotFoundException("Comment with 'id' matches the query not found!"));
     }

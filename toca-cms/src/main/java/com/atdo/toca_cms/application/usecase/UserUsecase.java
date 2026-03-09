@@ -5,6 +5,7 @@ import com.atdo.toca_cms.application.dto.user.UserFilterDto;
 import com.atdo.toca_cms.domain.entity.User;
 import com.atdo.toca_cms.domain.exceptions.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,9 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class UserUsecase {
+    @Autowired
     private final UserPersistenceAdapter adapter;
+    @Autowired
     private final PasswordEncoder passwordEncoder;
 
+    @Transactional(readOnly = true)
     public User searchOrFail(Long userId) {
         return adapter.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found!"));
     }

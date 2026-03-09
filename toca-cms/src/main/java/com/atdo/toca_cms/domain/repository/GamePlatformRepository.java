@@ -1,6 +1,8 @@
 package com.atdo.toca_cms.domain.repository;
 
+import com.atdo.toca_cms.adapter.persistence.entity.mediaType.game.GamePlatformIdEntity;
 import com.atdo.toca_cms.application.dto.mediaTypeDto.gameTypeDto.gamePlatform.GamePlatformFilterDto;
+import com.atdo.toca_cms.domain.entity.mediaType.game.Game;
 import com.atdo.toca_cms.domain.entity.mediaType.game.GamePlatform;
 import com.atdo.toca_cms.domain.entity.mediaType.game.GamePlatformId;
 import org.springframework.data.domain.Page;
@@ -22,7 +24,7 @@ public interface GamePlatformRepository {
      * @param gamePlatform The composite entity object to be persisted.
      * @return The persisted {@link GamePlatform} object.
      */
-    GamePlatform save(GamePlatform gamePlatform);
+    GamePlatform save(GamePlatform gamePlatform, Game game);
 
     /**
      * Finds a specific game-platform association by its composite unique identifier.
@@ -32,7 +34,7 @@ public interface GamePlatformRepository {
      * @return An {@link Optional} containing the {@link GamePlatform} entity if the
      * association is found, or an {@link Optional#empty()} otherwise.
      */
-    Optional<GamePlatform> findById(GamePlatformId id);
+    Optional<GamePlatform> findById(GamePlatformIdEntity id);
 
     /**
      * Retrieves a paginated list of game-platform associations based on specific filter criteria.
@@ -46,5 +48,5 @@ public interface GamePlatformRepository {
      */
     Page<GamePlatform> findAll(GamePlatformFilterDto filterDto);
 
-    void deleteById(Long id);
+    void deleteById(GamePlatformIdEntity id);
 }

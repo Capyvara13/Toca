@@ -1,12 +1,11 @@
 package com.atdo.toca_cms.application.dto.artist;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.atdo.toca_cms.domain.entity.common.CastAndCrew;
+import lombok.*;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -49,4 +48,7 @@ public class ArtistResponseDto {
      * The instant when the artist record was last updated.
      */
     private Instant updatedAt;
+
+    public ArtistResponseDto(long idArtist, @NonNull String slug, @NonNull String name, String bio, String photoUrl, List<CastAndCrew> castAndCrew, LocalDate birthDate, LocalDate deathDate, @NonNull Instant createdAt, Instant updatedAt) {
+    }
 }

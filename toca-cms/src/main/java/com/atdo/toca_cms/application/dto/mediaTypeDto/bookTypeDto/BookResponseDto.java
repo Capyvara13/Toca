@@ -1,10 +1,7 @@
 package com.atdo.toca_cms.application.dto.mediaTypeDto.bookTypeDto;
 
 import com.atdo.toca_cms.domain.util.enums.ContentStatus;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -94,4 +91,7 @@ public class BookResponseDto {
      * The ID of the parent Media entity.
      */
     private Long mediaId;
+
+    public BookResponseDto(long idBook, @NonNull String slug, @NonNull String title, String subtitle, @NonNull String isbn, int publicationYear, int edition, @NonNull String publisher, int numPages, @NonNull String sinopsis, String coverUrl, BigDecimal rating, @NonNull ContentStatus status, @NonNull Instant createdAt, Instant updatedAt) {
+    }
 }

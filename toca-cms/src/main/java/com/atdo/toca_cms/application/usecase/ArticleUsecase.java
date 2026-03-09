@@ -3,6 +3,7 @@ package com.atdo.toca_cms.application.usecase;
 import com.atdo.toca_cms.adapter.persistence.ArticlePersistenceAdapter;
 import com.atdo.toca_cms.application.dto.article.ArticleFilterDto;
 import com.atdo.toca_cms.domain.entity.Article;
+import com.atdo.toca_cms.domain.exceptions.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,8 +17,14 @@ public class ArticleUsecase {
     @Autowired
     private final ArticlePersistenceAdapter adapter;
 
-    public Article searchOrFail(Long id) {
+    @Transactional(readOnly = true)
+    public Article searchByIdOrFail(Long id) {
         return adapter.findById(id).orElseThrow(() -> new ExpressionException("Article not found!"));
+    }
+
+    @Transactional(readOnly = true)
+    public Article searchBySlugOrFail(String slug) {
+        return adapter.findBySlug(slug).orElseThrow(() -> new EntityNotFoundException("Article with this slug not found!"));
     }
 
     @Transactional(readOnly = true)

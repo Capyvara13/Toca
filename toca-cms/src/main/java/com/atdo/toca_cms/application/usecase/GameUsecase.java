@@ -16,8 +16,14 @@ public class GameUsecase {
     @Autowired
     private final GamePersistenceAdapter gameAdapter;
 
-    public Game searchOfFail(Long id) {
+    @Transactional(readOnly = true)
+    public Game searchByIdOfFail(Long id) {
         return gameAdapter.findById(id).orElseThrow(() -> new EntityNotFoundException("Game with this id not found!"));
+    }
+
+    @Transactional(readOnly = true)
+    public Game searchBySlugOrFail(String slug) {
+        return gameAdapter.findBySlug(slug).orElseThrow(() -> new EntityNotFoundException("Game not found with this slug!"));
     }
 
     @Transactional(readOnly = true)
